@@ -55,7 +55,7 @@ create table ensembles(
 ```sql
 create table concerts(
     concert_id serial primary key,
-    ensemble_name text,
+    concert_name text,
     date varchar(10),
     user_id integer references users(user_id)
 );
