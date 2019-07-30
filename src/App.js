@@ -10,11 +10,12 @@ function App() {
   return (
     <div className="App">
       <header>
-        <div>
-          <NavLink exact to='/' activeClassName='active'>Home</NavLink>
-          <NavLink exact to='/profile' activeClassName='active'>Profile</NavLink>
-          <NavLink exact to='/library' activeClassName='active'>Library</NavLink>
-          <NavLink exact to='/library/search' activeClassName='active'>Search</NavLink>
+        <img alt='header-logo' className='header-logo' src={process.env.PUBLIC_URL + '/music-library.png'}></img>
+        <div className='navigation'>
+          <NavLink exact to='/' className='navigation-link' activeClassName='active'>Home</NavLink>
+          <NavLink exact to='/profile' className='navigation-link' activeClassName='active'>Profile</NavLink>
+          <NavLink exact to='/library' className='navigation-link' activeClassName='active'>Library</NavLink>
+          <NavLink exact to='/library/search' className='navigation-link' activeClassName='active'>Search</NavLink>
         </div>
       </header>
       <Switch>
