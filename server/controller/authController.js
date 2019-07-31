@@ -27,7 +27,7 @@ module.exports = {
     }, 
     register: async (req, res, next) => {
         const db = req.app.get("db");
-        const { password, email } = req.body;
+        const { password, email, firstName, lastName, phoneNumber, school, district  } = req.body;
         db.select_user(email).then(([foundUser]) => {
             if(foundUser){
                 res.status(409).send("Plagiarist! That email is already registered");
@@ -36,9 +36,12 @@ module.exports = {
                 bcrypt.genSalt(saltRounds).then(salt => {
                     bcrypt.hash(password, salt).then(hashedPassword => {
                         db.create_user([email, hashedPassword])
-                        .then(([user]) => {
-                            req.session.user = user;
-                            res.status(200).send(req.session.user);
+                        .then(([createdUser]) => {
+                            db.add_profile([firstName, lastName, phoneNumber, school, district, createdUser.user_id])
+                            .then(([user]) => {
+                                req.session.user = user;
+                                res.status(200).send(req.session.user)
+                            })
                         });
                     });
                 });
