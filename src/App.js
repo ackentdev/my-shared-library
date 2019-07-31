@@ -1,24 +1,17 @@
 import React from 'react';
 import './App.css';
-import {Route, Switch, NavLink} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import Login from "./components/Login/Login";
 import Library from "./components/Library/Library";
 import Register from "./components/Register/Register";
 import Profile from "./components/Profile/Profile";
 import Search from "./components/Search/Search";
+import Header from './components/Header/Header';
 
 function App() {
   return (
     <div className="App">
-      <header>
-        <img alt='header-logo' className='header-logo' src={process.env.PUBLIC_URL + '/music-library.png'}></img>
-        <div className='navigation'>
-          <NavLink exact to='/' className='navigation-link' activeClassName='active'>Home</NavLink>
-          <NavLink exact to='/profile' className='navigation-link' activeClassName='active'>Profile</NavLink>
-          <NavLink exact to='/library' className='navigation-link' activeClassName='active'>Library</NavLink>
-          <NavLink exact to='/library/search' className='navigation-link' activeClassName='active'>Search</NavLink>
-        </div>
-      </header>
+      <Header />
       <Switch>
         <Route exact path="/" component={Login}/>
         <Route path="/register" component={Register}/>

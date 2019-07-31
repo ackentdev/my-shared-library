@@ -50,7 +50,6 @@ class Register extends React.Component{
     }
 
     render(){
-        console.log(this.props.user)
         const {email, lastName, firstName, password, phoneNumber, school, district} = this.state;
         return(
             <div className='register-page'>
