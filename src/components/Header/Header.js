@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './Header.scss';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { setUser } from '../../redux/reducer';
@@ -53,7 +53,9 @@ class Header extends Component {
           <NavLink exact to='/profile' className='navigation-link' activeClassName='active'>Profile</NavLink>
           <NavLink exact to='/library' className='navigation-link' activeClassName='active'>Library</NavLink>
           <NavLink exact to='/library/search' className='navigation-link' activeClassName='active'>Search</NavLink>
-          <button onClick={this.logout}>Logout</button>
+          <Link to="/">
+            <button onClick={this.logout}>Logout</button>
+            </Link>
         </div>
       </header>
         </div>
