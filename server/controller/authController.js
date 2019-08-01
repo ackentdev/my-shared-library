@@ -17,7 +17,13 @@ module.exports = {
             if(matchPasswords){
                 req.session.user = {
                     user_id: foundUser[0].user_id,
-                    email: foundUser[0].email
+                    email: foundUser[0].email,
+                    firstName: foundUser[0].first_name,
+                    lastName: foundUser[0].last_name,
+                    phoneNumber: foundUser[0].phone,
+                    school: foundUser[0].school,
+                    district: foundUser[0].district,
+                    picture: foundUser[0].picture
                 };
                 res.status(200).send(req.session.user);
             } else{

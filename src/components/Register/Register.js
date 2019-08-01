@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
+import {Link} from "react-router-dom";
 import {setUser} from '../../redux/reducer';
 import "./Register.scss";
 
@@ -28,11 +29,20 @@ class Register extends React.Component{
     }
 
     register(){
+        let newUserProfile = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            password: this.state.password,
+            phoneNumber: this.state.phoneNumber,
+            school: this.state.school,
+            district: this.state.district,
+        }
         this.setState({
             loading:true
         })
         axios
-        .post('/api/register', {email: this.state.email, password: this.state.password})
+        .post('/api/register', newUserProfile)
         .then(res=> {
             this.props.setUser(res.data);
         this.setState({
@@ -75,7 +85,7 @@ class Register extends React.Component{
                         this.changeHandler(e.target.name, e.target.value)
                       }
                     />
-                    <input type="text" placeholder='Password'
+                    <input type="password" placeholder='Password'
                     name="password"
                     value={password}
                     onChange={e =>
@@ -103,8 +113,9 @@ class Register extends React.Component{
                         this.changeHandler(e.target.name, e.target.value)
                       }
                     />
-                    
+                    <Link to="/profile">
                     <button className='register-button' onClick={this.register}>Register Account</button>
+                    </Link>
                 </div>
             </div>
         )

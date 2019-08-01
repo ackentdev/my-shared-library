@@ -11,10 +11,12 @@ class Header extends Component {
         super(props);
         this.logout=this.logout.bind(this);
         this.userSession=this.userSession.bind(this);
+        this.getProfile = this.getProfile.bind(this);
     }
 
     componentDidMount() {
         this.userSession();
+        console.log("component mounted:", this.props.user);
     }
 
     logout() {
@@ -27,6 +29,14 @@ class Header extends Component {
 
     userSession() {
         axios.get('/api/userSession')
+        .then((res) => {
+            this.props.setUser(res.data);
+        })
+        .catch(err => console.log(err));
+    }
+
+    getProfile(){
+        axios.get('/api/userSession', {user_id : this.props.user.user_id})
         .then((res) => {
             this.props.setUser(res.data);
         })

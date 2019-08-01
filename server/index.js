@@ -4,7 +4,7 @@ const express = require('express');
 const session = require('express-session');
 const app = express();
 const { login, register, userSession, logout } = require('./controller/authController');
-const { addProfileInfo, updateProfileInfo, getProfileInfo, deleteProfile } = require('./controller/profileController');
+const { updateProfileInfo, getProfileInfo, deleteProfile } = require('./controller/profileController');
 const {SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env;
 
 app.use(express.json());
@@ -29,9 +29,8 @@ app.post('/api/register', register);
 app.get('/api/userSession', userSession);
 app.get('/api/logout', logout);
 
-// app.post('/api/profile', addProfileInfo);
 // app.put('/api/profile', updateProfileInfo);
-// app.get('/api/profile', getProfileInfo);
+app.get('/api/profile', getProfileInfo);
 // app.delete('/api/profile', deleteProfile);
 
 app.listen(SERVER_PORT, () => console.log(`listening on port ${SERVER_PORT}🎵`))
