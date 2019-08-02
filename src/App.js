@@ -7,6 +7,7 @@ import Register from "./components/Register/Register";
 import Profile from "./components/Profile/Profile";
 import Search from "./components/Search/Search";
 import Header from './components/Header/Header';
+import AddSong from './components/AddSong/AddSong';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/register" component={Register}/>
         <Route exact path="/profile" component={Profile}/>
         <Route exact path="/library" component={Library}/>
+        <Route exact path="/library/add_song" component={AddSong}/>
         <Route exact path="/library/search" component={Search}/>
       </Switch>
       
