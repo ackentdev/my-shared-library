@@ -29,7 +29,7 @@ app.post('/api/register', register);
 app.get('/api/userSession', userSession);
 app.get('/api/logout', logout);
 
-// app.put('/api/profile', updateProfileInfo);
+app.put('/api/profile/:user_id', updateProfileInfo);
 app.get('/api/profile', getProfileInfo);
 // app.delete('/api/profile', deleteProfile);
 

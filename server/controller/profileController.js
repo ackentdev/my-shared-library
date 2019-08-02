@@ -1,7 +1,15 @@
 module.exports = {
 
     updateProfileInfo: (req, res, next) => {
-
+        const db = req.app.get("db");
+        const {user_id} = req.params;
+        const {editfirstName, editlastName, editphoneNumber, editschool, editdistrict, editemail} = req.body;
+        db.edit_profile([user_id, editfirstName, editlastName, editemail, editphoneNumber, editschool, editdistrict])
+        .then(([user]) => {
+            req.session.user = user;
+            res.status(200).send(req.session.user);
+        })
+        .catch(err => console.log(err));
     },
     getProfileInfo: (req, res, next) => {
         const db = req.app.get("db");

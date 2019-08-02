@@ -8,6 +8,12 @@ class Profile extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+            editfirstName: this.props.user.firstName,
+            editlastName: this.props.user.lastName,
+            editemail: this.props.user.email,
+            editphoneNumber: this.props.user.phoneNumber,
+            editschool: this.props.user.school,
+            editdistrict: this.props.user.district,
             editing: false,
             loading: true
         }
@@ -17,16 +23,42 @@ class Profile extends React.Component{
         this.setState({
             loading: false
         })
-    }
+    };
+
+    updateProfile(){
+        const {user_id} = this.props.user;
+        const updatedProfile = {
+            editfirstName: this.state.editfirstName,
+            editlastName: this.state.editlastName,
+            editemail: this.state.editemail,
+            editphoneNumber: this.state.editphoneNumber,
+            editschool: this.state.editschool,
+            editdistrict: this.state.editdistrict
+        }
+        axios.put(`/api/profile/${user_id}`, updatedProfile)
+        .then(res => {
+            this.props.setUser(res.data);
+            this.setState({
+                editing: false
+            })
+        }).catch(err => console.log(err))
+    };
+
+    changeHandler(property, value){
+        this.setState({
+            [property]:value
+        })
+    };
 
     editingMode(){
         this.setState({
             editing: true
         })
-    }
+    };
 
     render(){
         const {firstName, lastName, phoneNumber, picture, school, district, email} = this.props.user
+        const {editfirstName, editlastName, editphoneNumber, editschool, editdistrict, editemail} = this.state;
         if(!this.state.editing){
         return(
             <div>
@@ -47,19 +79,55 @@ class Profile extends React.Component{
                 <div>
                     <img className="profile-picture" alt='' src={picture}/>
                     <div>
-                        <input type="text" placeholder={firstName} />
-                        <input type="text" placeholder={lastName} />
+                        <input type="text" placeholder={firstName}
+                        name="editfirstName"
+                        value={editfirstName}
+                        onChange={e =>
+                            this.changeHandler(e.target.name, e.target.value)
+                          }
+                        ></input>
+                        <input type="text" placeholder={lastName}
+                        name="editlastName"
+                        value={editlastName}
+                        onChange={e =>
+                            this.changeHandler(e.target.name, e.target.value)
+                          }
+                        ></input>
                     </div>
                     <div>
                         <img alt="email-icon" src={process.env.PUBLIC_URL + '/email-icon.svg'}/>
-                        <input type="text" placeholder={email}/>
+                        <input type="text" placeholder={email}
+                        name="editemail"
+                        value={editemail}
+                        onChange={e =>
+                            this.changeHandler(e.target.name, e.target.value)
+                          }
+                        ></input>
                         <img alt="phone-icon" src={process.env.PUBLIC_URL + '/phone-icon.svg'}/>
-                        <input type="text" placeholder={phoneNumber}/>
+                        <input type="text" placeholder={phoneNumber}
+                        name="editphoneNumber"
+                        value={editphoneNumber}
+                        onChange={e =>
+                            this.changeHandler(e.target.name, e.target.value)
+                          }
+                        ></input>
                     </div>
-                    <input type="text" placeholder={school}/>
-                    <input type="text" placeholder={district}/>
+                    <input type="text" placeholder={school}
+                    name="editschool"
+                    value={editschool}
+                    onChange={e =>
+                        this.changeHandler(e.target.name, e.target.value)
+                      }
+                    ></input>
+                    <input type="text" placeholder={district}
+                    name="editdistrict"
+                    value={editdistrict}
+                    onChange={e =>
+                        this.changeHandler(e.target.name, e.target.value)
+                      }
+                    ></input>
                     <button onClick={() => {this.setState({editing: false})}}>Cancel</button>
-                    <button>Confirm Changes</button>
+                    <button onClick={() => this.updateProfile()}>Confirm Changes</button>
                 </div>
             )
         }
