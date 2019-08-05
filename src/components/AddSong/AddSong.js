@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { setUser } from '../../redux/reducer';
+import { Link } from 'react-router-dom'
 import "./AddSong.scss";
 
 class AddSong extends Component{
@@ -111,7 +112,9 @@ class AddSong extends Component{
                         onChange={e => this.changeHandler(e.target.name, e.target.value)}required />
                     </div>
                     <div className="song-input">
+                        <Link to="/library">
                         <button type="submit" value="Add Song" onClick={(e) => this.addToLibrary(e)}>Add Song</button>
+                        </Link>
                     </div>
                 </form>
             </div>
