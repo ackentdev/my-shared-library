@@ -6,7 +6,7 @@ module.exports = {
         db.add_song([title, voicing, genre, catalogID, composer, publisher, publisherID, accompaniment, notes, user_id])
         .then(() => {
             console.log("Song successfully added!");
-            alert("Song successfully added!");
+            res.status(200).send("Song successfuly added!");
         })
         .catch(err => console.log(err));
     },
@@ -15,7 +15,7 @@ module.exports = {
         let { user_id } = req.params;
 
         db.get_song_library([user_id])
-        .then(([library]) => {
+        .then((library) => {
             res.status(200).send(library)
         })
         .catch(err => console.log(err));

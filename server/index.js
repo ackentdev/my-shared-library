@@ -35,6 +35,6 @@ app.get('/api/profile', getProfileInfo);
 // app.delete('/api/profile', deleteProfile);
 
 app.post('/api/library', addSong);
-app.get('/api/library', getLibrary);
+app.get('/api/library/:user_id', getLibrary);
 
 app.listen(SERVER_PORT, () => console.log(`listening on port ${SERVER_PORT}🎵`))
