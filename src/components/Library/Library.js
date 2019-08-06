@@ -38,13 +38,13 @@ class Library extends React.Component{
         console.log(this.state);
         return(
             <div>
-                {mappedLibrary}
                 <div>
                     <img alt='add-icon' src={process.env.PUBLIC_URL + '/add-icon.svg'}/>
                     <Link to="/library/add_song">
                         <button>Add Song</button>
                     </Link>
                 </div>
+                {mappedLibrary}
             </div>
         )
     };
