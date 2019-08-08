@@ -47,12 +47,14 @@ class Header extends Component {
         console.log(this.props.user);
         return <div>
             <header>
+        <Link exact to="/">
         <img alt='header-logo' className='header-logo' src={process.env.PUBLIC_URL + '/music-library.png'}></img>
+        </Link>
         <div className='navigation'>
-          <NavLink exact to='/' className='navigation-link' activeClassName='active'>Home</NavLink>
+          {/* <NavLink exact to='/' className='navigation-link' activeClassName='active'>Home</NavLink> */}
           <NavLink exact to='/profile' className='navigation-link' activeClassName='active'>Profile</NavLink>
           <NavLink exact to='/library' className='navigation-link' activeClassName='active'>Library</NavLink>
-          <NavLink exact to='/library/search' className='navigation-link' activeClassName='active'>Search</NavLink>
+          {/* <NavLink exact to='/library/search' className='navigation-link' activeClassName='active'>Search</NavLink> */}
           <Link to="/">
             <button onClick={this.logout}>Logout</button>
             </Link>

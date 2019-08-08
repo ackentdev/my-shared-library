@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setUser } from '../../redux/reducer';
 import Song from "./Song/Song";
+import Search from "./Search/Search";
 import './Library.scss';
 import axios from 'axios';
 
@@ -42,6 +43,9 @@ class Library extends React.Component{
                     <img alt='add-icon' src={process.env.PUBLIC_URL + '/add-icon.svg'}/>
                     <Link to="/library/add_song">
                         <button>Add Song</button>
+                    </Link>
+                    <Link to="/library/search">
+                        <button>Search</button>
                     </Link>
                 </div>
                 {mappedLibrary}
