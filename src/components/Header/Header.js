@@ -9,14 +9,16 @@ import { setUser } from '../../redux/reducer';
 class Header extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            user: null
+        }
         this.logout=this.logout.bind(this);
         this.userSession=this.userSession.bind(this);
         this.getProfile = this.getProfile.bind(this);
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.userSession();
-        console.log("component mounted:", this.props.user);
     }
 
     logout() {
@@ -44,7 +46,7 @@ class Header extends Component {
     }
 
     render(){
-        console.log(this.props.user);
+        console.log("logged in user: ", this.props.user)
         return <div>
             <header>
         <Link exact to="/">

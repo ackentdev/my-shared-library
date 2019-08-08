@@ -1,25 +1,17 @@
 import React from 'react';
-import axios from 'axios';
 
-export default class Song extends React.Component{
-    constructor(props){
-        super(props);
-        // this.deleteSong = this.deleteSong.bind(this);
-    }
-    render(){
-        const {title, voicing, genre, catalog_id, composer, publisher, publisher_id, accompaniment, notes, song_id} = this.props.song;
+export default function Song(props){
     return(
-        <div>
-            <span>Title: {title}</span>
-            <span> Voicing: {voicing}</span>
-            <span> Genre: {genre}</span>
-            <span> Catalog: {catalog_id}</span>
-            <span> Composer: {composer}</span>
-            <span> Publisher: {publisher}</span>
-            <span> Publisher ID: {publisher_id}</span>
-            <span> Accompaniment: {accompaniment}</span>
-            <span> Notes: {notes}</span>
-            {/* <button>Delete</button> */}
-        </div>
-    )}
+        <ul key={props.song.song_id}>
+            <li> Title: {props.song.song_name}</li>
+            <li> Voicing: {props.song.voicing}</li>
+            <li> Genre: {props.song.genre}</li>
+            <li> Catalog: {props.song.catalog_id}</li>
+            <li> Composer: {props.song.composer}</li>
+            <li> Publisher: {props.song.publisher}</li>
+            <li> Publisher ID: {props.song.publisher_id}</li>
+            <li> Accompaniment: {props.song.accompaniment}</li>
+            <li> Notes: {props.song.notes}</li>
+        </ul>
+    )
 }

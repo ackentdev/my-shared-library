@@ -39,6 +39,7 @@ module.exports = {
         };
     },
     deleteSong: async (req, res, next) => {
+        console.log("req.query: ", req.query)
         const db = req.app.get("db");
         let {user_id, song_id} = req.query;
         const deletedSong = await db.delete_song([song_id, user_id])

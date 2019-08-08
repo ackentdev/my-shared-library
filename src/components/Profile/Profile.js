@@ -18,8 +18,13 @@ class Profile extends React.Component{
             loading: true
         }
     }
- 
+    
+    componentDidUpdate(){
+     console.log("updated!")
+    }
+
     componentDidMount(){
+        console.log("mounted!")
         this.setState({
             loading: false
         })

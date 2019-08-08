@@ -30,10 +30,14 @@ class Library extends React.Component{
         }).catch(err => console.log(err))
     };
 
-    deleteSong(song_id, user_id){
-        console.log("we did it!");
-        axios.delete(`/api/libary?song_id=${song_id}&${user_id}`)
+    deleteSong(param1, param2){
+        console.log("userId", param2)
+        console.log("clicked button")
+        const song_id = param1;
+        const user_id = param2;
+        axios.delete(`/api/library?song_id=${song_id}&user_id=${user_id}`)
         .then(res => {
+            console.log(res.data)
             this.setState({
                 library: res.data
             })
@@ -43,9 +47,10 @@ class Library extends React.Component{
 
     render(){
         const mappedLibrary = this.state.library.map(song => {
-            return (<div>
+            return (
+            <div>
                 <Song key={song.song_id} song={song}/>
-                <button onClick={this.deleteSong(song.song_id, this.props.user.user_id)}>Delete</button>
+                <button onClick={() => this.deleteSong(song.song_id, this.props.user.user_id)}>Delete</button>
             </div>)
         })
         console.log(this.state);
