@@ -14,6 +14,7 @@ class Library extends React.Component{
             library: []
         }
         this.getLibrary = this.getLibrary.bind(this);
+        this.deleteSong = this.deleteSong.bind(this);
     }
 
     componentDidMount(){
@@ -28,13 +29,24 @@ class Library extends React.Component{
             })
         }).catch(err => console.log(err))
     };
+
+    deleteSong(song_id, user_id){
+        console.log("we did it!");
+        axios.delete(`/api/libary?song_id=${song_id}&${user_id}`)
+        .then(res => {
+            this.setState({
+                library: res.data
+            })
+        })
+    }
     
 
     render(){
         const mappedLibrary = this.state.library.map(song => {
-            return <div>
-                <Song song={song}/>
-            </div>
+            return (<div>
+                <Song key={song.song_id} song={song}/>
+                <button onClick={this.deleteSong(song.song_id, this.props.user.user_id)}>Delete</button>
+            </div>)
         })
         console.log(this.state);
         return(

@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 export default class Song extends React.Component{
     constructor(props){
@@ -18,7 +19,7 @@ export default class Song extends React.Component{
             <span> Publisher ID: {publisher_id}</span>
             <span> Accompaniment: {accompaniment}</span>
             <span> Notes: {notes}</span>
-            <button>Delete</button>
+            {/* <button>Delete</button> */}
         </div>
     )}
 }
