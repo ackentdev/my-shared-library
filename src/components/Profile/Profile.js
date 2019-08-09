@@ -8,15 +8,25 @@ class Profile extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            editfirstName: this.props.user.firstName,
-            editlastName: this.props.user.lastName,
-            editemail: this.props.user.email,
-            editphoneNumber: this.props.user.phoneNumber,
-            editschool: this.props.user.school,
-            editdistrict: this.props.user.district,
+            editfirstName: props.user && props.user.firstName,
+            editlastName: props.user && props.user.lastName,
+            editemail: props.user && props.user.email ,
+            editphoneNumber: props.user && props.user.phoneNumber,
+            editschool: props.user && props.user.school,
+            editdistrict: props.user && props.user.district,
+            firstName: props.user && props.user.firstName,
+            lastName: props.user && props.user.lastName,
+            email: props.user && props.user.email,
+            phoneNumber: props.user && props.user.phoneNumber,
+            school: props.user && props.user.school,
+            district: props.user && props.user.district,
+            picture: props.user && props.user.picture,
+            user_id: props.user && props.user.user_id,
+            concerts: [],
             editing: false,
             loading: true
         }
+        this.getConcerts = this.getConcerts.bind(this);
     }
     
     componentDidUpdate(){
@@ -28,6 +38,7 @@ class Profile extends React.Component{
         this.setState({
             loading: false
         })
+        this.getConcerts();
     };
 
     updateProfile(){
@@ -55,14 +66,24 @@ class Profile extends React.Component{
         })
     };
 
+    getConcerts(){
+        axios.get(`/api/profile/concerts/${this.state.user_id}`)
+        .then( res => {
+            this.setState({
+                concerts: res.data
+            })
+        })
+    }
+
     editingMode(){
         this.setState({
             editing: true
         })
     };
-
+    
     render(){
-        const {firstName, lastName, phoneNumber, picture, school, district, email} = this.props.user
+        console.log(this.state.concerts)
+        const {firstName, lastName, phoneNumber, picture, school, district, email} = this.state
         const {editfirstName, editlastName, editphoneNumber, editschool, editdistrict, editemail} = this.state;
         if(!this.state.editing){
         return(
@@ -77,6 +98,9 @@ class Profile extends React.Component{
                 <h6>{school}</h6>
                 <h4>{district}</h4>
                 <button onClick={() => this.editingMode()}>Update User Info</button>
+            </div>
+            <div className="concerts">
+
             </div>
             </div>
         )} else {

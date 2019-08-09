@@ -21,5 +21,10 @@ module.exports = {
     },
     deleteProfile: (req, res, next) => {
 
+    },
+    getConcerts: async(req, res, next) => {
+        const db = req.app.get("db");
+        const concerts = await db.get_concerts([req.params.user_id]).catch(err => console.log(err))
+        res.status(200).send(concerts);
     }
 }

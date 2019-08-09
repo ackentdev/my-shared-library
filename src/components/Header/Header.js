@@ -17,7 +17,7 @@ class Header extends Component {
         this.getProfile = this.getProfile.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.userSession();
     }
 
