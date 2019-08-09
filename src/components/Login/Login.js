@@ -60,9 +60,9 @@ class Login extends React.Component{
                             this.changeHandler(e.target.name, e.target.value)
                           }
                         />
-                        <Link to="/profile">
+                        {/* <Link to="/profile"> */}
                             <button className='login-button' onClick={this.login}>Login</button>
-                        </Link>
+                        {/* </Link> */}
                         <Link to="/register">
                             <button className='login-button'>Get Started</button>
                         </Link>

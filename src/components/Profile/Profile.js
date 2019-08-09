@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from "react-redux";
 import { setUser } from '../../redux/reducer';
+import Concerts from '../Concerts/Concerts'
 import "./Profile.scss"
 
 class Profile extends React.Component{
@@ -83,8 +84,50 @@ class Profile extends React.Component{
     
     render(){
         console.log(this.state.concerts)
-        const {firstName, lastName, phoneNumber, picture, school, district, email} = this.state
+        const {firstName, lastName, phoneNumber, picture, school, district, email, concerts, user_id} = this.state
         const {editfirstName, editlastName, editphoneNumber, editschool, editdistrict, editemail} = this.state;
+        // const [concertNames] = this.state.concerts.map( e => {
+        //         let arr =[]
+        //         if (!arr.includes(e.concert_name)){
+        //             arr.push(e.concert_name)
+        //         }
+        //         return arr;
+        // })
+        // console.log("concert names:", concertNames)
+
+
+        let mappedConcertSongs = []
+        this.state.concerts.forEach(song => {
+        let index = mappedConcertSongs.findIndex(concert => 
+        song.concert_name === concert.concertName)
+  
+        if (index === -1) {
+        mappedConcertSongs.push({
+        concertName : song.concert_name,
+        concert_id : song.concert_id,
+        songs: [ { songName: song.song_name, catalogId: song.catalog_id }],
+        date: song.date
+            })
+        }
+        else {
+            mappedConcertSongs[index].songs.push({ songName: song.song_name, catalogId: song.catalog_id })
+        }
+        });
+        console.log(mappedConcertSongs);
+
+        let concertInfo = mappedConcertSongs.map( concert => {
+            
+                return(
+                    <div>
+                        <h1>
+                            <span>{concert.concertName}</span>
+                            <span> {concert.date}</span>
+                        </h1>
+                        <Concerts concert={concert} />
+                    </div>
+                )  
+        })
+
         if(!this.state.editing){
         return(
             <div>
@@ -100,7 +143,8 @@ class Profile extends React.Component{
                 <button onClick={() => this.editingMode()}>Update User Info</button>
             </div>
             <div className="concerts">
-
+                <h1>Concerts</h1>
+                {concertInfo}
             </div>
             </div>
         )} else {
