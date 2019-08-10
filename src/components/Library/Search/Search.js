@@ -22,7 +22,8 @@ class Search extends React.Component{
         })
     }
 
-    findResults(){
+    findResults(e){
+        e.preventDefault();
         const inquiry = {
             searchColumn: this.state.searchColumn,
             typedSearch: this.state.typedSearch.toLowerCase()
@@ -60,7 +61,7 @@ class Search extends React.Component{
                     value={this.state.typedSearch}
                     onChange={ e => this.changeHandler(e.target.name, e.target.value)}>
                 </input>
-                <button onClick={this.findResults}>Search</button>
+                <button onClick={(e) => this.findResults(e)}>Search</button>
                 <div>
                     {mappedResults}
                 </div>

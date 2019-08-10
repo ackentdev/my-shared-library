@@ -30,9 +30,8 @@ module.exports = {
     addConcert: async(req, res, next) => {
         const db = req.app.get("db");
         const {user_id} = req.params;
-        const {concert_name, date, song_id} = req.body;
-        console.log(`added ${song_id} to concert ${concert_name}`)
-        const addedConcert = await db.add_concert([user_id, concert_name, date, song_id]).catch(err => console.log(err))
+        const {concertName, concertDate, songId} = req.body;
+        const addedConcert = await db.add_concert([user_id, concertName, concertDate, songId]).catch(err => console.log(err))
         res.status(200).send(addedConcert);
     }
 }

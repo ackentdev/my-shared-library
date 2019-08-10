@@ -8,6 +8,7 @@ import Profile from "./components/Profile/Profile";
 import Search from "./components/Library/Search/Search";
 import Header from './components/Header/Header';
 import AddSong from './components/AddSong/AddSong';
+import AddConcert from './components/AddConcert/AddConcert';
 // import axios from 'axios';
 
 class App extends React.Component {
@@ -23,6 +24,7 @@ class App extends React.Component {
         <Route exact path="/library" component={Library}/>
         <Route exact path="/library/add_song" component={AddSong}/>
         <Route exact path="/library/search" component={Search}/>
+        <Route exact path="/addConcert" component={AddConcert}/>
       </Switch>
       
     </div>
