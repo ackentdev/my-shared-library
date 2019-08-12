@@ -1,22 +1,43 @@
+$color: rgb(66, 171, 219);
 .login-page{
-    background-image: url('../../media-library/music-background.jpg');
-    height: 100vh;
+    height: 88vh;
     min-width: 100vw;
-    max-width: 100vw;
+    display: flex;
     .login-box {
         display: flex;
-        background-color: peachpuff;
+        background-image: url('../../media-library/maestro.jpg');
+        background-size: 300px 300px;
+        background-position: bottom right;
+        background-repeat: no-repeat;
+        background-color: $color;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: baseline;
         border: 2px solid;
+        border-radius: 5%;
         min-height: 300px;
         min-width: 300px;
         width: 40vw;
         position: relative;
         margin: auto;
-      .login-button {
+        .input {
+          position: relative;
+          left: 50px;
+          bottom: 50px;
+          margin: 10px 0;
+          box-shadow:0 3px 3px #0000003f;
+        }
+      .login {
            margin: 5px 0;
+           position: relative;
+           bottom: 20px;
+           left: 92px;
+      }
+      .register {
+        margin: 5px 0;
+           position: relative;
+           bottom: 20px;
+           left: 75px;
       }
     }
 }

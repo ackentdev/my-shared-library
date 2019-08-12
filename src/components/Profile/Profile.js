@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import { setUser } from '../../redux/reducer';
 import Concerts from '../Concerts/Concerts'
 import "./Profile.scss"
@@ -56,8 +57,16 @@ class Profile extends React.Component{
         .then(res => {
             this.props.setUser(res.data);
             this.setState({
-                editing: false
+            firstName: res.data.first_name,
+            lastName: res.data.last_name,
+            email: res.data.email,
+            phoneNumber: res.data.phone,
+            school: res.data.school,
+            district: res.data.district,
+            picture: res.data.picture,
+            editing: false
             })
+            this.props.history.push("/profile")
         }).catch(err => console.log(err))
     };
 
@@ -107,15 +116,6 @@ class Profile extends React.Component{
     render(){
         const {firstName, lastName, phoneNumber, picture, school, district, email, concerts, user_id} = this.state
         const {editfirstName, editlastName, editphoneNumber, editschool, editdistrict, editemail} = this.state;
-        // const [concertNames] = this.state.concerts.map( e => {
-        //         let arr =[]
-        //         if (!arr.includes(e.concert_name)){
-        //             arr.push(e.concert_name)
-        //         }
-        //         return arr;
-        // })
-        // console.log("concert names:", concertNames)
-
 
         let mappedConcertSongs = []
         this.state.concerts.forEach(song => {
@@ -138,10 +138,10 @@ class Profile extends React.Component{
         let concertInfo = mappedConcertSongs.map( concert => {
             
                 return(
-                    <div key={concert.concert_id}>
-                        <h1>
-                            <span>{concert.concertName}</span>
-                            <span> {concert.date}</span>
+                    <div className="concert-individual" key={concert.concert_id}>
+                        <h1 className="concert-details">
+                            <span className="concert-name">{concert.concertName}</span>
+                            <span className="concert-date"> {concert.date}</span>
                         </h1>
                         <Concerts concert={concert} />
                     </div>
@@ -150,26 +150,35 @@ class Profile extends React.Component{
 
         if(!this.state.editing){
         return(
-            <div>
+            <div className="profile-component">
             <div className="profile-info">
                 <img className="profile-picture" alt='' src={picture}/>
                 <h1>{firstName} {lastName}</h1>
-                <h2>
-                    <img alt="email-icon" src={process.env.PUBLIC_URL + '/email-icon.svg'}/> {email}, 
-                    <img alt="phone-icon" src={process.env.PUBLIC_URL + '/phone-icon.svg'}/>{phoneNumber}
-                </h2>
+                <div className="contact-info">
+                    <img alt="email-icon" src={process.env.PUBLIC_URL + '/email-icon.svg'}/> 
+                    <span>{email}              </span> 
+                    <img alt="phone-icon" src={process.env.PUBLIC_URL + '/phone-icon.svg'}/>
+                    <span>{phoneNumber}</span>
+                </div>
                 <h6>{school}</h6>
                 <h4>{district}</h4>
                 <button onClick={() => this.editingMode()}>Update User Info</button>
             </div>
             <div className="concerts">
-                <h1>Concerts</h1>
+                <span className="headline">Concerts</span>
+                <Link to="/add-concert">
+                <span>
+                    <img alt='add-concert' src={process.env.PUBLIC_URL + '/add-icon.svg'}/>
+                </span>
+                </Link>
+            </div>
+            <div className="concert-info">
                 {concertInfo}
             </div>
             </div>
         )} else {
             return(
-                <div>
+                <div className="profile-component">
                     <img className="profile-picture" alt='' src={picture}/>
                     <div>
                         <input type="text" placeholder={firstName}

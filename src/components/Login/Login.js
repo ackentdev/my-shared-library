@@ -48,23 +48,27 @@ class Login extends React.Component{
             <div>
                 <div className='login-page'>
                     <div className='login-box'>
-                       <input type="text" placeholder="Email"
+                        <div className="greeting">
+                        <h1>Sign In</h1>
+                        </div>
+                       <input className='input' type="text" placeholder="Email"
                         name='email'
                         value={email}
                         onChange={e =>
                             this.changeHandler(e.target.name, e.target.value)
                           } 
                         />
-                        <input type="password" placeholder='Password'
+                        <input className='input' type="password" placeholder='Password'
                         name='password'
                         value={password}
                         onChange={e =>
                             this.changeHandler(e.target.name, e.target.value)
                           }
                         />
-                            <button className='login-button' onClick={this.login}>Login</button>
+                            <button className='login' onClick={this.login}>Login</button>
+                            <p className="prompt">Not registered?</p>
                         <Link to="/register">
-                            <button className='login-button'>Get Started</button>
+                            <button className='register'>Get Started</button>
                         </Link>
                     </div>
                </div>

@@ -25,7 +25,7 @@ class App extends React.Component {
         <PrivateRoute path="/library/add-song" component={AddSong}/>
         <PrivateRoute path="/library/search" component={Search}/>
         <PrivateRoute path="/library" component={Library}/>
-        <PrivateRoute path="/addConcert" component={AddConcert}/>
+        <PrivateRoute path="/add-concert" component={AddConcert}/>
         <Route exact path="/" component={Login}/>
       </Switch>
       

@@ -49,19 +49,16 @@ class Header extends Component {
         console.log("logged in user: ", this.props.user)
         return <div>
             <header>
-        <Link to="/">
-        <img alt='header-logo' className='header-logo' src={process.env.PUBLIC_URL + '/music-library.png'}></img>
-        </Link>
-        <div className='navigation'>
-          {/* <NavLink exact to='/' className='navigation-link' activeClassName='active'>Home</NavLink> */}
-          <NavLink exact to='/profile' className='navigation-link' activeClassName='active'>Profile</NavLink>
-          <NavLink exact to='/library' className='navigation-link' activeClassName='active'>Library</NavLink>
-          {/* <NavLink exact to='/library/search' className='navigation-link' activeClassName='active'>Search</NavLink> */}
-          <Link to="/">
-            <button onClick={this.logout}>Logout</button>
-            </Link>
-        </div>
-      </header>
+                <Link to="/">
+                <img alt='header-logo' className='header-logo' src={process.env.PUBLIC_URL + '/music-folder.svg'}></img>
+                </Link>
+                <h1 className={this.props.user ? 'title' : "not-logged-in"}>My Shared Library</h1>
+                <div className={this.props.user ? "navigation" : "hide"}>
+                    <NavLink exact to='/profile' className='navigation-link' activeClassName='active'>Profile</NavLink>
+                    <NavLink exact to='/library' className='navigation-link' activeClassName='active'>Library</NavLink>
+                    <NavLink exact to='/' className='navigation-link'  onClick={this.logout}>Logout</NavLink>
+                </div>
+            </header>
         </div>
     };
 };
