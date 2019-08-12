@@ -49,7 +49,7 @@ class Header extends Component {
         console.log("logged in user: ", this.props.user)
         return <div>
             <header>
-        <Link exact to="/">
+        <Link to="/">
         <img alt='header-logo' className='header-logo' src={process.env.PUBLIC_URL + '/music-library.png'}></img>
         </Link>
         <div className='navigation'>

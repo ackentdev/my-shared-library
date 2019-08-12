@@ -8,42 +8,42 @@ import "./Profile.scss"
 class Profile extends React.Component{
     constructor(props){
         super(props);
+        const user_id = parseInt(localStorage.getItem("user"));
         this.state = {
-            editfirstName: props.user && props.user.firstName,
-            editlastName: props.user && props.user.lastName,
-            editemail: props.user && props.user.email ,
-            editphoneNumber: props.user && props.user.phoneNumber,
-            editschool: props.user && props.user.school,
-            editdistrict: props.user && props.user.district,
-            firstName: props.user && props.user.firstName,
-            lastName: props.user && props.user.lastName,
-            email: props.user && props.user.email,
-            phoneNumber: props.user && props.user.phoneNumber,
-            school: props.user && props.user.school,
-            district: props.user && props.user.district,
-            picture: props.user && props.user.picture,
-            user_id: props.user && props.user.user_id,
+            editfirstName: "",
+            editlastName: "",
+            editemail: "" ,
+            editphoneNumber: "",
+            editschool: "",
+            editdistrict: "",
+            firstName: "",
+            lastName: "",
+            email: "",
+            phoneNumber: "",
+            school: "",
+            district: "",
+            picture: "",
+            user_id: user_id,
             concerts: [],
             editing: false,
             loading: true
         }
         this.getConcerts = this.getConcerts.bind(this);
-    }
-    
-    componentDidUpdate(){
-     console.log("updated!")
+        this.getProfileInfo = this.getProfileInfo.bind(this);
     }
 
+
     componentDidMount(){
-        console.log("mounted!")
         this.setState({
             loading: false
         })
         this.getConcerts();
+        this.getProfileInfo(this.state.user_id);
     };
 
     updateProfile(){
-        const {user_id} = this.props.user;
+        const user_id = parseInt(localStorage.getItem("user"));
+        console.log(user_id);
         const updatedProfile = {
             editfirstName: this.state.editfirstName,
             editlastName: this.state.editlastName,
@@ -67,6 +67,28 @@ class Profile extends React.Component{
         })
     };
 
+    getProfileInfo(id){
+        axios.get(`/api/profile/${id}`)
+        .then( res => {
+            console.log(res.data);
+            this.setState({
+                editfirstName: res.data.first_name,
+                editlastName: res.data.last_name,
+                editemail: res.data.email ,
+                editphoneNumber: res.data.phone,
+                editschool: res.data.school,
+                editdistrict: res.data.district,
+                firstName: res.data.first_name,
+                lastName: res.data.last_name,
+                email: res.data.email,
+                phoneNumber: res.data.phone,
+                school: res.data.school,
+                district: res.data.district,
+                picture: res.data.picture,
+            })
+        })
+    }
+
     getConcerts(){
         axios.get(`/api/profile/concerts/${this.state.user_id}`)
         .then( res => {
@@ -83,7 +105,6 @@ class Profile extends React.Component{
     };
     
     render(){
-        console.log(this.state.concerts)
         const {firstName, lastName, phoneNumber, picture, school, district, email, concerts, user_id} = this.state
         const {editfirstName, editlastName, editphoneNumber, editschool, editdistrict, editemail} = this.state;
         // const [concertNames] = this.state.concerts.map( e => {
@@ -113,12 +134,11 @@ class Profile extends React.Component{
             mappedConcertSongs[index].songs.push({ songName: song.song_name, catalogId: song.catalog_id })
         }
         });
-        console.log(mappedConcertSongs);
 
         let concertInfo = mappedConcertSongs.map( concert => {
             
                 return(
-                    <div>
+                    <div key={concert.concert_id}>
                         <h1>
                             <span>{concert.concertName}</span>
                             <span> {concert.date}</span>

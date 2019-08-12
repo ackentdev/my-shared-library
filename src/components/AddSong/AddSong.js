@@ -61,7 +61,6 @@ class AddSong extends Component{
     }
 
     render(){
-        console.log(this.props.user.user_id)
         const {title, voicing, genre, catalogID, composer, publisher, publisherID, accompaniment, notes } = this.state;
         return(
             <div>

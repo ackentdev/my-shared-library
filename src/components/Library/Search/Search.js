@@ -11,7 +11,7 @@ class Search extends React.Component{
         this.state = {
             searchColumn: 'song_name',
             typedSearch: '',
-            results: [],
+            results: []
         }
         this.findResults = this.findResults.bind(this);
     }
@@ -47,7 +47,7 @@ class Search extends React.Component{
             </div>
         })
         return(
-            <div>
+            <div className="search">
                 <select name="searchColumn" onChange={ e => this.changeHandler(e.target.name, e.target.value)}>
                     <option name="searchColumn" value="song_name">Title</option>
                     <option name="searchColumn" value="voicing">Voicing</option>

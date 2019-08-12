@@ -22,7 +22,7 @@ class Library extends React.Component{
     }
 
     getLibrary(){
-        axios.get(`/api/library/${this.props.user.user_id}`)
+        axios.get(`/api/library/${parseInt(localStorage.getItem("user"))}`)
         .then(res => {
             this.setState({
                 library: res.data

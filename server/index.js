@@ -31,7 +31,7 @@ app.get('/api/userSession', userSession);
 app.get('/api/logout', logout);
 
 app.put('/api/profile/:user_id', updateProfileInfo);
-app.get('/api/profile', getProfileInfo);
+app.get('/api/profile/:user_id', getProfileInfo);
 // app.delete('/api/profile', deleteProfile);
 
 app.post('/api/library', addSong);

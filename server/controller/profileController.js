@@ -11,13 +11,11 @@ module.exports = {
         })
         .catch(err => console.log(err));
     },
-    getProfileInfo: (req, res, next) => {
+    getProfileInfo: async (req, res, next) => {
         const db = req.app.get("db");
-        db.get_profile([req.body.user_id])
-        .then(([user]) => {
-            req.session.user = user;
-            res.status(200).send(req.session.user);
-        })
+        const [profileInfo] = await db.get_profile([req.params.user_id]).catch(err => console.log(err))
+        res.status(200).send(profileInfo)
+        
     },
     deleteProfile: (req, res, next) => {
 

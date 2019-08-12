@@ -31,11 +31,13 @@ class Login extends React.Component{
         axios.post('/api/login', {email: this.state.email, password: this.state.password})
         .then(res=> {
             this.props.setUser(res.data);
+            localStorage.setItem("user", res.data.user_id)
             this.setState({
                 email: '',
                 password: '',
                 loading: false
             });
+            this.props.history.push('/profile')
         });
     };
 
@@ -60,9 +62,7 @@ class Login extends React.Component{
                             this.changeHandler(e.target.name, e.target.value)
                           }
                         />
-                        {/* <Link to="/profile"> */}
                             <button className='login-button' onClick={this.login}>Login</button>
-                        {/* </Link> */}
                         <Link to="/register">
                             <button className='login-button'>Get Started</button>
                         </Link>
