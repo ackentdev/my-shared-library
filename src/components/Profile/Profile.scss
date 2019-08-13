@@ -71,34 +71,15 @@ $font-family: 'Merriweather', serif !default;
                 overflow: hidden;
               }
         }
-    // .concert-info {
-    //     position: relative;
-    //     top:25px;
-    //     min-width: 500px;
-    //     display: flex;
-    //     flex-direction: column;
-    //     justify-content: space-between;
-    //     .concert-individual {
 
-    //         .concert-details{
-    //             img {
-    //                 height: 1em;
-    //                 width: 1em;
-    //             }
-    //             .concert-name{
-    //                 font-family: 'Roboto', sans-serif;
-    //             }
-    //             .concert-date{
-    //                 font-family: 'Roboto', sans-serif;
-    //             }
-    //         }
-    //         .hidden{
-    //             display: none;
-    //         }
-    //         .not-hidden{
-
-    //         }
-    //     }
-
-    // }
-}
+    }
+    @media screen and (max-width:700px){
+        .profile-component{
+            
+                .concert-info {
+                
+                min-width: 300px;
+                }
+            
+        }
+    }

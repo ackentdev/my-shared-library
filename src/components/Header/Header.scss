@@ -7,6 +7,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 3;
+    position:static;
     
     .header-logo {
       margin: 0 0 0 20px;
@@ -30,6 +32,24 @@ header {
       text-decoration: none;
     }
 
+    .btn {
+      background-color: rgb(66, 171, 219); /* Blue background */
+      border: none; /* Remove borders */
+      color: white; /* White text */
+      padding: 12px 16px; /* Some padding */
+      font-size: 28px; /* Set a font size */
+      cursor: pointer; /* Mouse pointer on hover */
+      display: none;
+    }
+    
+    .btn:hover {
+      background-color: DodgerBlue;
+    }
+
+    .navigation.mobile-menu {
+      display: none
+    }
+
     .not-logged-in {
       font-size: 24px;
       font-family: 'Merriweather', serif;
@@ -44,5 +64,63 @@ header {
     .active {
       text-decoration: underline;
     }
+  }
+  @media screen and (max-width:700px){
+    header {
+    .btn {
+    background-color: rgb(66, 171, 219); /* Blue background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 28px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+    display: block;
+    }
+    .header-logo{
+      size: 24px;
+    }
+
+    .title {
+      font-size: 18px;
+    }
+
+    .not-logged-in {
+      font-size: 18px;
+      right: 0;
+    }
+   
+    .navigation.non-mobile{
+      display: none;
+      .navigation-link{
+        display: none;
+      }
+    }
+  }
+  .navigation.mobile-menu{
+    background-color: rgb(66,171,219);
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    width: 100%;
+    position: absolute;
+    top: 12vh;
+    transition: .4s;
+    transition-timing-function: ease-in-out;
+
+    .navigation-link {
+      display: flex;
+      padding: 10px;
+      text-decoration: none;
+      color: black;
+      margin: 0 20px;
+      font-size: 18px;
+      font-family: 'Merriweather', serif;
+    }
+  }
+  .navigation.mobile-menu.show{
+    transform: translateY(-150px)
+  }
+    
   }
   

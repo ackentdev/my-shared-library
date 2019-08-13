@@ -10,11 +10,21 @@ class Header extends Component {
     constructor(props){
         super(props);
         this.state = {
-            user: null
+            user: null,
+            toggleMenu: false
         }
         this.logout=this.logout.bind(this);
         this.userSession=this.userSession.bind(this);
         this.getProfile = this.getProfile.bind(this);
+        this.toggleMenuFunc = this.toggleMenuFunc.bind(this);
+    }
+
+    toggleMenuFunc(){
+        this.setState((prevState) => {
+            return {
+                toggleMenu: !prevState.toggleMenu
+            }
+        })
     }
 
     componentDidMount() {
@@ -53,12 +63,20 @@ class Header extends Component {
                 <img alt='header-logo' className='header-logo' src={process.env.PUBLIC_URL + '/music-folder.svg'}></img>
                 </Link>
                 <h1 className={this.props.user ? 'title' : "not-logged-in"}>My Shared Library</h1>
-                <div className={this.props.user ? "navigation" : "hide"}>
+                <div className={this.props.user ? "navigation non-mobile" : "hide"}>
                     <NavLink exact to='/profile' className='navigation-link' activeClassName='active'>Profile</NavLink>
                     <NavLink exact to='/library' className='navigation-link' activeClassName='active'>Library</NavLink>
                     <NavLink exact to='/' className='navigation-link'  onClick={this.logout}>Logout</NavLink>
                 </div>
+                <button className="btn" onClick={this.toggleMenuFunc}>
+                    <i className="fa fa-bars"></i>
+                </button>
             </header>
+            <div className={this.state.toggleMenu ? "navigation mobile-menu show" : "navigation mobile-menu"}>
+                    <NavLink exact to='/profile' className='navigation-link' activeClassName='active'>Profile</NavLink>
+                    <NavLink exact to='/library' className='navigation-link' activeClassName='active'>Library</NavLink>
+                    <NavLink exact to='/' className='navigation-link'  onClick={this.logout}>Logout</NavLink>
+                </div>
         </div>
     };
 };
