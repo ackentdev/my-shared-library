@@ -43,7 +43,7 @@ $font-family: 'Merriweather', serif !default;
         }
     }
         .concert-info {
-            min-width: 450px;
+            min-width: 500px;
             .accordion {
                 background-color: rgb(0, 177, 221);
                 font-size: 18px;
@@ -57,18 +57,14 @@ $font-family: 'Merriweather', serif !default;
                 transition: 0.4s;
               }
               .active, .accordion:hover {
-                background-color: rgb(0, 0, 0);
-                color: blanchedalmond;
+                background-color: rgb(85, 211, 243);
+                color: rgb(0, 0, 0);
               }
               .inactive {
-                padding: 0 18px;
-                background-color: white;
-                color: black;
                 display: none;
-                overflow: hidden;
               }
               .active {
-                padding: 0 18px;
+                padding: 10px 18px;
                 color: black;
                 background-color: white;
                 display: block;
