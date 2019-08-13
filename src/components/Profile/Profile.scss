@@ -32,8 +32,9 @@ $font-family: 'Merriweather', serif !default;
         }
     }
     .concerts{
+    
         display: flex;
-        align-items: center;
+        justify-content: flex-start;
         .headline{
             font-family: $font-family;
             font-size: 22px;
@@ -41,21 +42,67 @@ $font-family: 'Merriweather', serif !default;
             text-decoration: underline;
         }
     }
-    .concert-info {
-        position: relative;
-        top:25px;
-        display: flex;
-        flex-direction: column;
-        .concert-individual {
-            .concert-details{
-                .concert-name{
-                    font-family: 'Roboto', sans-serif;
-                }
-                .concert-date{
-                    font-family: 'Roboto', sans-serif;
-                }
-            }
+        .concert-info {
+            min-width: 450px;
+            .accordion {
+                background-color: rgb(0, 177, 221);
+                font-size: 18px;
+                color: rgb(0, 0, 0);
+                cursor: pointer;
+                padding: 18px;
+                width: 100%;
+                text-align: left;
+                border: none;
+                outline: none;
+                transition: 0.4s;
+              }
+              .active, .accordion:hover {
+                background-color: rgb(0, 0, 0);
+                color: blanchedalmond;
+              }
+              .inactive {
+                padding: 0 18px;
+                background-color: white;
+                color: black;
+                display: none;
+                overflow: hidden;
+              }
+              .active {
+                padding: 0 18px;
+                color: black;
+                background-color: white;
+                display: block;
+                overflow: hidden;
+              }
         }
+    // .concert-info {
+    //     position: relative;
+    //     top:25px;
+    //     min-width: 500px;
+    //     display: flex;
+    //     flex-direction: column;
+    //     justify-content: space-between;
+    //     .concert-individual {
 
-    }
+    //         .concert-details{
+    //             img {
+    //                 height: 1em;
+    //                 width: 1em;
+    //             }
+    //             .concert-name{
+    //                 font-family: 'Roboto', sans-serif;
+    //             }
+    //             .concert-date{
+    //                 font-family: 'Roboto', sans-serif;
+    //             }
+    //         }
+    //         .hidden{
+    //             display: none;
+    //         }
+    //         .not-hidden{
+
+    //         }
+    //     }
+
+    // }
 }

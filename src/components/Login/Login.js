@@ -45,12 +45,9 @@ class Login extends React.Component{
 
         const {email, password} = this.state;
         return(
-            <div>
                 <div className='login-page'>
                     <div className='login-box'>
-                        <div className="greeting">
-                        <h1>Sign In</h1>
-                        </div>
+                        <h1 className="greeting">Sign In</h1>
                        <input className='input' type="text" placeholder="Email"
                         name='email'
                         value={email}
@@ -72,7 +69,6 @@ class Login extends React.Component{
                         </Link>
                     </div>
                </div>
-            </div>
         )
     };
 };

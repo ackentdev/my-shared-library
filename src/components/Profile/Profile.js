@@ -27,7 +27,9 @@ class Profile extends React.Component{
             user_id: user_id,
             concerts: [],
             editing: false,
-            loading: true
+            loading: true,
+            active: false,
+            index: null
         }
         this.getConcerts = this.getConcerts.bind(this);
         this.getProfileInfo = this.getProfileInfo.bind(this);
@@ -94,9 +96,29 @@ class Profile extends React.Component{
                 school: res.data.school,
                 district: res.data.district,
                 picture: res.data.picture,
+
             })
         })
     }
+
+    toggleClass(i) {
+        if (this.state.index === null){
+        this.setState({index: i})
+        } else {
+            this.setState({ index: null})
+        }
+    };
+
+    hidingSongInfo(){
+        this.className.toggle("active");
+        let panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+    }
+
 
     getConcerts(){
         axios.get(`/api/profile/concerts/${this.state.user_id}`)
@@ -135,21 +157,23 @@ class Profile extends React.Component{
         }
         });
 
-        let concertInfo = mappedConcertSongs.map( concert => {
+        let concertInfo = mappedConcertSongs.map( (concert, i) => {
             
                 return(
                     <div className="concert-individual" key={concert.concert_id}>
-                        <h1 className="concert-details">
-                            <span className="concert-name">{concert.concertName}</span>
-                            <span className="concert-date"> {concert.date}</span>
-                        </h1>
-                        <Concerts concert={concert} />
+                        <button onClick={() => this.toggleClass(i)} class="accordion">{concert.concertName}  {concert.date}</button>
+                        <div class={this.state.index === i ? 'active' : 'inactive'}>
+                            <p>
+                                <Concerts concert={concert} />
+                            </p>
+                        </div>
                     </div>
                 )  
         })
 
         if(!this.state.editing){
         return(
+            
             <div className="profile-component">
             <div className="profile-info">
                 <img className="profile-picture" alt='' src={picture}/>
