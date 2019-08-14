@@ -62,26 +62,27 @@ class AddConcert extends Component{
     this.setState({
         added: true
     })
+    this.props.history.push('/profile')
 }
 
     render(){
         console.log("state: ", this.state)
         const {concertName, concertDate} = this.state;
-        const mappedResults = this.state.results.map(song => {
-            return <div key={song.song_id}>
+        const mappedResults = this.state.results.map((song, i) => {
+            return <div className={i % 2 === 0 ? "songs even" : "songs odd"} key={song.song_id}>
                 <Song song={song}/>
                 <button onClick={(e) => this.addSongToConcert(e, song)}>Add To Concert</button>
             </div>
         })
-        const mappedSongInfo = this.state.songList.map(song => {
-            return <div className="temp-song-info" key={song.song_id}>
+        const mappedSongInfo = this.state.songList.map((song, i) => {
+            return <div className={i % 2 === 0 ? "songs even" : "songs odd"} key={song.song_id}>
                 <span className="song-name">{song.song_name} </span>
                 <span className="voicing">{song.voicing} </span>
                 <span className="catalog-id">{song.catalog_id} </span>
             </div>
         })
         return(
-            <div>
+            <div className="concert-add">
                 <form action="" method="post" className="add-concert">
                     <div className="concert-input-static">
                         <label htmlFor="concertName">Name: </label>
@@ -93,6 +94,13 @@ class AddConcert extends Component{
                         <input type="text" name="concertDate" value={concertDate} id="concertDate" 
                         onChange={e => this.changeHandler(e.target.name, e.target.value)} />
                     </div>
+                    <div className="temp-concert">
+                        <h1>Concert Preview</h1>
+                        <h1>{concertName}, {concertDate}</h1>
+                        {mappedSongInfo}
+                    </div>
+                    <div className="song-input">
+                         
                     <div className="search">
                         <select name="searchColumn" onChange={ e => this.changeHandler(e.target.name, e.target.value)}>
                             <option name="searchColumn" value="song_name">Title</option>
@@ -108,20 +116,13 @@ class AddConcert extends Component{
                             onChange={ e => this.changeHandler(e.target.name, e.target.value)}>
                 </input>
                 <button onClick={(e) => this.findResults(e)}>Search</button>
-                <div>
-                    {mappedResults}
-                </div>
             </div>
-                    <div className="temp-concert">
-                        <h1>Concert Preview</h1>
-                        <h1>{concertName}, {concertDate}</h1>
-                        {mappedSongInfo}
-                    </div>
-                    <div className="song-input">
-                         
                         <button type="submit" value="Add Song" onClick={(e) => this.addConcert(e)}>Add Concert</button>
                         
                     </div>
+                <div className="results">
+                    {mappedResults}
+                </div>
                 </form>
             </div>
         )

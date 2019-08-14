@@ -1,0 +1,33 @@
+.concert-add {
+    position: relative;
+    top: 12vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(202, 244, 255);
+    width: 80vw;
+    margin: auto;
+    position: relative;
+    .add-concert {
+        top: 20px;
+        position: relative;
+        height: 100vh;
+    .temp-concert{
+        position: relative;
+        overflow: scroll;
+        height: 150px;
+    }
+    .results {
+        position: absolute;
+        overflow: scroll;
+        top: 330px;
+        .songs.even {
+            position: relative;
+            background-color: rgb(66, 171, 219)
+        }
+        .odd {
+            background-color: rgb(125, 193, 224)
+        }
+    }
+}
+}
