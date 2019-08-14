@@ -7,6 +7,7 @@ const { login, register, userSession, logout } = require('./controller/authContr
 const { updateProfileInfo, getProfileInfo, getConcerts, addConcert } = require('./controller/profileController');
 const { addSong, getLibrary, search, deleteSong } = require('./controller/libraryController')
 const {SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env;
+app.use( express.static( `${__dirname}/../build` ) );
 
 app.use(express.json());
 
@@ -43,3 +44,7 @@ app.get('/api/profile/concerts/:user_id', getConcerts)
 app.post('/api/profile/concerts/:user_id', addConcert)
 
 app.listen(SERVER_PORT, () => console.log(`listening on port ${SERVER_PORT}🎵`))
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
