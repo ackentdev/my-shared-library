@@ -1,6 +1,7 @@
 .App{
     background-image: linear-gradient(rgba(197, 202, 204, 0.822), rgba(90, 185, 248, 0.596)), url('./media-library/music-background.jpg');
     max-width: 100vw;
+    min-height: 150vh;
 }
 .hide{
     display: none

@@ -28,7 +28,8 @@ class Register extends React.Component{
         })
     }
 
-    register(){
+    register(e){
+        e.preventDefault(e);
         let newUserProfile = {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
@@ -45,6 +46,7 @@ class Register extends React.Component{
         .post('/api/register', newUserProfile)
         .then(res=> {
             this.props.setUser(res.data);
+            localStorage.setItem("user", res.data.user_id)
         this.setState({
             user: null,
             firstName: '',
@@ -57,67 +59,98 @@ class Register extends React.Component{
             loading: false
         })
         })
+        this.props.history.push('./profile')
     }
 
     render(){
         const {email, lastName, firstName, password, phoneNumber, school, district} = this.state;
         return(
-            <div className='register-page'>
-                <div className='register-box'>
-                    <input type="text" placeholder="First Name"
-                    name="firstName"
-                    value={firstName}
-                    onChange={e =>
-                        this.changeHandler(e.target.name, e.target.value)
-                      }
-                    />
-                    <input type="text" placeholder='Last Name'
-                    name="lastName"
-                    value={lastName}
-                    onChange={e =>
-                        this.changeHandler(e.target.name, e.target.value)
-                      }
-                    />
-                    <input type="text" placeholder='Email'
-                    name="email"
-                    value={email}
-                    onChange={e =>
-                        this.changeHandler(e.target.name, e.target.value)
-                      }
-                    />
-                    <input type="password" placeholder='Password'
-                    name="password"
-                    value={password}
-                    onChange={e =>
-                        this.changeHandler(e.target.name, e.target.value)
-                      }
-                    />
-                    <input type="text" placeholder='Phone Number'
-                    name="phoneNumber"
-                    value={phoneNumber}
-                    onChange={e =>
-                        this.changeHandler(e.target.name, e.target.value)
-                      }
-                    />
-                    <input type="text" placeholder='School'
-                    name="school"
-                    value={school}
-                    onChange={e =>
-                        this.changeHandler(e.target.name, e.target.value)
-                      }
-                    />
-                    <input type="text" placeholder='District'
-                    name="district"
-                    value={district}
-                    onChange={e =>
-                        this.changeHandler(e.target.name, e.target.value)
-                      }
-                    />
-                    <Link to="/profile">
-                    <button className='register-button' onClick={this.register}>Register Account</button>
-                    </Link>
+            <body>
+    <div class="container">
+        <div class="row">
+			<div class="col-md-5 mx-auto">
+			<div id="first"></div>
+            <div class="myform form ">
+            <div class="logo mb-3">
+                <div class="col-md-12 text-center">
+                   <h1>Register</h1>
                 </div>
-            </div>
+           </div>
+          <form action="" method="post" name="login">
+                  <div class="form-group">
+                     <input className="form-control" id="firstName" aria-describedby="emailHelp" type="email" placeholder="First Name"
+                        name='firstName'
+                        value={firstName}
+                        onChange={e =>
+                            this.changeHandler(e.target.name, e.target.value)
+                          } 
+                        />
+                  </div>
+                  <div class="form-group">
+                     <input className="form-control" id="lastName" aria-describedby="emailHelp" type="email" placeholder="Last Name"
+                        name='lastName'
+                        value={lastName}
+                        onChange={e =>
+                            this.changeHandler(e.target.name, e.target.value)
+                          } 
+                        />
+                  </div>
+                  <div class="form-group">
+                     <input className="form-control" id="email" aria-describedby="emailHelp" type="email" placeholder="Enter email"
+                        name='email'
+                        value={email}
+                        onChange={e =>
+                            this.changeHandler(e.target.name, e.target.value)
+                          } 
+                        />
+                  </div>
+                  <div class="form-group">
+                     <input className="form-control" aria-describedby="emailHelp" type="password" placeholder='Enter Password'
+                        name='password'
+                        value={password}
+                        onChange={e =>
+                            this.changeHandler(e.target.name, e.target.value)
+                          }
+                        />
+                  </div>
+                  <div class="form-group">
+                     <input className="form-control" id="phoneNumber" aria-describedby="emailHelp" type="email" placeholder="Phone Number"
+                        name='phoneNumber'
+                        value={phoneNumber}
+                        onChange={e =>
+                            this.changeHandler(e.target.name, e.target.value)
+                          } 
+                        />
+                  </div>
+                  <div class="form-group">
+                     <input className="form-control" id="school" aria-describedby="emailHelp" type="email" placeholder="Enter school"
+                        name='school'
+                        value={school}
+                        onChange={e =>
+                            this.changeHandler(e.target.name, e.target.value)
+                          } 
+                        />
+                  </div>
+                  <div class="form-group">
+                     <input className="form-control" id="district" aria-describedby="emailHelp" type="email" placeholder="Enter district"
+                        name='district'
+                        value={district}
+                        onChange={e =>
+                            this.changeHandler(e.target.name, e.target.value)
+                          } 
+                        />
+                  </div>
+                  <div class="col-md-12 text-center ">
+                     <button type="submit" onClick={(e) => this.register(e)}class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
+                  </div>
+                  
+               </form>
+       </div>
+       </div>
+       </div>
+       </div>
+       </body>
+            
         )
     };
 };

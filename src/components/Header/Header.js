@@ -11,7 +11,7 @@ class Header extends Component {
         super(props);
         this.state = {
             user: null,
-            toggleMenu: false
+            toggleMenu: true
         }
         this.logout=this.logout.bind(this);
         this.userSession=this.userSession.bind(this);

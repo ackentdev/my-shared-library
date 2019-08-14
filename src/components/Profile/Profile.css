@@ -1,5 +1,4 @@
-.register-page{
-  body{
+body{
     height: 100vh;
     width: 100vw;
       background:rgba(0, 0, 0, 0);
@@ -18,6 +17,7 @@
          }
           .myform{
       top: 30px;
+
       position: relative;
       display: -ms-flexbox;
       display: flex;
@@ -33,6 +33,12 @@
       outline: 0;
       max-width: 500px;
       }
+      .profile-picture {
+        border-radius: 50%;
+        height: 200px;
+        width: 200px;
+        
+    }
       .col-md-12.text-center{
          font-size:18px;
       }
@@ -74,24 +80,3 @@
          outline:none;
          border: 1px solid lightgrey;
          }
-          form .error {
-         color: #ff0000;
-         }
-    // .register-box {
-    //     display: flex;
-    //     background-color: peachpuff;
-    //     flex-direction: column;
-    //     justify-content: center;
-    //     align-items: center;
-    //     border: 2px solid;
-    //     min-height: 400px;
-    //     min-width: 300px;
-    //     width: 40vw;
-    //     position: relative;
-    //     top: 20vh;
-    //     margin: auto;
-    //   .register-button {
-    //        margin: 5px 0;
-    //   }
-    // }
-}

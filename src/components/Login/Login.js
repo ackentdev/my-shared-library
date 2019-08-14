@@ -63,7 +63,6 @@ class Login extends React.Component{
            </div>
           <form action="" method="post" name="login">
                   <div class="form-group">
-                     <label for="exampleInputEmail1">Email address</label>
                      <input className="form-control" id="email" aria-describedby="emailHelp" type="email" placeholder="Enter email"
                         name='email'
                         value={email}
@@ -73,7 +72,6 @@ class Login extends React.Component{
                         />
                   </div>
                   <div class="form-group">
-                     <label for="exampleInputEmail1">Password</label>
                      <input className="form-control" aria-describedby="emailHelp" type="password" placeholder='Enter Password'
                         name='password'
                         value={password}

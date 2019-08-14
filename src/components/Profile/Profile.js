@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { setUser } from '../../redux/reducer';
 import Concerts from '../Concerts/Concerts'
 import "./Profile.scss"
+import "./Profile.css"
 
 class Profile extends React.Component{
     constructor(props){
@@ -179,14 +180,13 @@ class Profile extends React.Component{
                 <img className="profile-picture" alt='' src={picture}/>
                 <h1>{firstName} {lastName}</h1>
                 <div className="contact-info">
-                    <img alt="email-icon" src={process.env.PUBLIC_URL + '/email-icon.svg'}/> 
-                    <span>{email}              </span> 
-                    <img alt="phone-icon" src={process.env.PUBLIC_URL + '/phone-icon.svg'}/>
-                    <span>{phoneNumber}</span>
+                    
+                    <div><img alt="email-icon" src={process.env.PUBLIC_URL + '/email-icon.svg'}/> {email}</div> 
+                    <div><img alt="phone-icon" src={process.env.PUBLIC_URL + '/phone-icon.svg'}/>{phoneNumber}</div>
                 </div>
                 <h6>{school}</h6>
                 <h4>{district}</h4>
-                <button onClick={() => this.editingMode()}>Update User Info</button>
+                <button  className="btn" onClick={() => this.editingMode()}>Update User Info</button>
             </div>
             <div className="concerts">
                 <span className="headline">Concerts</span>
@@ -203,8 +203,15 @@ class Profile extends React.Component{
         )} else {
             return(
                 <div className="profile-component">
+                            <body>
+    <div class="container">
+        <div class="row">
+			<div class="col-md-5 mx-auto">
+			<div id="first"></div>
+            <div class="myform form ">
+                    <form action="" method="post" name="login">
                     <img className="profile-picture" alt='' src={picture}/>
-                    <div>
+                    <div class="form-group">
                         <input type="text" placeholder={firstName}
                         name="editfirstName"
                         value={editfirstName}
@@ -212,6 +219,8 @@ class Profile extends React.Component{
                             this.changeHandler(e.target.name, e.target.value)
                           }
                         ></input>
+                        </div>
+                        <div class="form-group">
                         <input type="text" placeholder={lastName}
                         name="editlastName"
                         value={editlastName}
@@ -220,7 +229,7 @@ class Profile extends React.Component{
                           }
                         ></input>
                     </div>
-                    <div>
+                    <div class="form-group">
                         <img alt="email-icon" src={process.env.PUBLIC_URL + '/email-icon.svg'}/>
                         <input type="text" placeholder={email}
                         name="editemail"
@@ -229,6 +238,8 @@ class Profile extends React.Component{
                             this.changeHandler(e.target.name, e.target.value)
                           }
                         ></input>
+                        </div>
+                        <div class="form-group">
                         <img alt="phone-icon" src={process.env.PUBLIC_URL + '/phone-icon.svg'}/>
                         <input type="text" placeholder={phoneNumber}
                         name="editphoneNumber"
@@ -238,6 +249,7 @@ class Profile extends React.Component{
                           }
                         ></input>
                     </div>
+                    <div class="form-group">
                     <input type="text" placeholder={school}
                     name="editschool"
                     value={editschool}
@@ -245,6 +257,8 @@ class Profile extends React.Component{
                         this.changeHandler(e.target.name, e.target.value)
                       }
                     ></input>
+                    </div>
+                    <div class="form-group">
                     <input type="text" placeholder={district}
                     name="editdistrict"
                     value={editdistrict}
@@ -252,9 +266,17 @@ class Profile extends React.Component{
                         this.changeHandler(e.target.name, e.target.value)
                       }
                     ></input>
-                    <button onClick={() => {this.setState({editing: false})}}>Cancel</button>
-                    <button onClick={() => this.updateProfile()}>Confirm Changes</button>
+                    </div>
+                    <button className="btn" onClick={() => {this.setState({editing: false})}}>Cancel</button>
+                    <button className="btn" onClick={() => this.updateProfile()}>Confirm Changes</button>
+                    </form>
+                    </div>
+       </div>
+       </div>
+       </div>
+       </body>
                 </div>
+                
             )
         }
     };
