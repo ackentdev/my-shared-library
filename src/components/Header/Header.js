@@ -68,7 +68,7 @@ class Header extends Component {
                     <NavLink exact to='/library' className='navigation-link' activeClassName='active'>Library</NavLink>
                     <NavLink exact to='/' className='navigation-link'  onClick={this.logout}>Logout</NavLink>
                 </div>
-                <button className="btn" onClick={this.toggleMenuFunc}>
+                <button className={this.props.user ? "btn" : "hide"} onClick={this.toggleMenuFunc}>
                     <i className="fa fa-bars"></i>
                 </button>
             </header>

@@ -41,8 +41,8 @@ class Search extends React.Component{
 
     render(){
         console.log(this.state);
-        const mappedResults = this.state.results.map(song => {
-            return <div>
+        const mappedResults = this.state.results.map((song, i) => {
+            return <div className={i % 2 === 0 ? "songs even" : "songs odd"}>
                 <Song song={song}/>
             </div>
         })

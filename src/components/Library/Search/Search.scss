@@ -1,0 +1,10 @@
+.search{
+    position: relative;
+    top: 12vh;
+    .songs.even {
+        background-color: rgb(66, 171, 219)
+    }
+    .odd {
+        background-color: rgb(125, 193, 224)
+    }
+}

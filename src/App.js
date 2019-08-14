@@ -22,7 +22,7 @@ class App extends React.Component {
         <Route path="/register" component={Register}/>
         <PrivateRoute path='/profile' component={Profile}/>
         {/* <Route exact path="/profile" component={Profile}/> */}
-        <PrivateRoute path="/library/add-song" component={AddSong}/>
+        <PrivateRoute path="/library/add_song" component={AddSong}/>
         <PrivateRoute path="/library/search" component={Search}/>
         <PrivateRoute path="/library" component={Library}/>
         <PrivateRoute path="/add-concert" component={AddConcert}/>

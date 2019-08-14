@@ -46,17 +46,17 @@ class Library extends React.Component{
     
 
     render(){
-        const mappedLibrary = this.state.library.map(song => {
+        const mappedLibrary = this.state.library.map((song,i) => {
             return (
-            <div>
+            <div className={i % 2 === 0 ? "songs even" : "songs odd"}>
                 <Song key={song.song_id} song={song}/>
                 <button onClick={() => this.deleteSong(song.song_id, this.props.user.user_id)}>Delete</button>
             </div>)
         })
         console.log(this.state);
         return(
-            <div>
-                <div>
+            <div className='library'>
+                <div className="buttons">
                     <img alt='add-icon' src={process.env.PUBLIC_URL + '/add-icon.svg'}/>
                     <Link to="/library/add_song">
                         <button>Add Song</button>
