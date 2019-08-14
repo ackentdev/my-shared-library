@@ -43,7 +43,8 @@ app.delete('/api/library', deleteSong)
 app.get('/api/profile/concerts/:user_id', getConcerts)
 app.post('/api/profile/concerts/:user_id', addConcert)
 
-app.listen(SERVER_PORT, () => console.log(`listening on port ${SERVER_PORT}🎵`))
+app.listen(SERVER_PORT || 80, () => console.log(`listening on port ${SERVER_PORT}🎵`));
+
 const path = require('path')
 app.get('*', (req, res)=>{
   res.sendFile(path.join(__dirname, '../build/index.html'));
